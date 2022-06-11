@@ -11,3 +11,8 @@ enum class BlockType {
     IMAGE,
     TEXT,
 }
+
+enum class BlockTextStyle(val style: String) {
+    LG("lg"),
+    XL("xl"),
+}

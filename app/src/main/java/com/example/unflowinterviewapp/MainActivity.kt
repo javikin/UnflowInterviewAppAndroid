@@ -9,10 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.unflowcarousel.Block
-import com.example.unflowcarousel.BlockType
-import com.example.unflowcarousel.Carousel
-import com.example.unflowcarousel.ScreenData
+import com.example.unflowcarousel.*
 import com.example.unflowinterviewapp.ui.theme.UnflowInterviewAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -40,7 +37,7 @@ private fun MyApp() {
                             Block(
                                 0,
                                 "Introducing Audio Rooms",
-                                mapOf(),
+                                mapOf("text_style" to BlockTextStyle.LG.style),
                                 BlockType.TEXT
                             ),
                             Block(
@@ -59,7 +56,7 @@ private fun MyApp() {
                             Block(
                                 0,
                                 "Smart Noise Cancellation",
-                                mapOf(),
+                                mapOf("text_style" to BlockTextStyle.LG.style),
                                 BlockType.TEXT
                             ),
                             Block(
@@ -78,7 +75,7 @@ private fun MyApp() {
                             Block(
                                 0,
                                 "Boogie Mode",
-                                mapOf(),
+                                mapOf("text_style" to BlockTextStyle.LG.style),
                                 BlockType.TEXT
                             ),
                             Block(

@@ -57,6 +57,7 @@ fun Carousel(screens: List<ScreenData>) {
 
 @Composable
 fun Screen(screenData: ScreenData) {
+    val blocks = screenData.blocks.sortedBy { it.position }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -69,9 +70,9 @@ fun Screen(screenData: ScreenData) {
             contentScale = ContentScale.Crop,
             modifier = Modifier.padding(vertical = 16.dp)
         )
-        repeat(screenData.blocks.size) {
-            when(screenData.blocks[it].blockType){
-                BlockType.TEXT -> BlockText(screenData.blocks[it])
+        repeat(blocks.size) {
+            when (blocks[it].blockType) {
+                BlockType.TEXT -> BlockText(blocks[it])
                 BlockType.IMAGE -> TODO()
             }
         }
@@ -80,14 +81,29 @@ fun Screen(screenData: ScreenData) {
 
 @Composable
 fun BlockText(block: Block) {
+    var textStyle = TextStyle(fontSize = 20.sp, textAlign = TextAlign.Center, color = Color.Black)
+    if (block.style.containsKey("text_style")) {
+        when (block.style["text_style"]) {
+            BlockTextStyle.LG.style -> {
+                textStyle = TextStyle(
+                    fontSize = 28.sp,
+                    textAlign = TextAlign.Center,
+                    color = Color.Black,
+                    fontWeight = FontWeight.W700
+                )
+            }
+            BlockTextStyle.XL.style -> {
+                textStyle = TextStyle(
+                    fontSize = 32.sp,
+                    textAlign = TextAlign.Center,
+                    color = Color.Black,
+                )
+            }
+        }
+    }
     Text(
         text = block.value,
-        style = TextStyle(
-            fontSize = 28.sp,
-            textAlign = TextAlign.Center,
-            color = Color.Black,
-            fontWeight = FontWeight.W700
-        ),
+        style = textStyle,
         modifier = Modifier.padding(12.dp),
     )
 }
