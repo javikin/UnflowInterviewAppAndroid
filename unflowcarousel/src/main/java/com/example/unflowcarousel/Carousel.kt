@@ -31,8 +31,15 @@ fun Carousel(screens: List<ScreenData>) {
     val currentPage = remember { mutableStateOf(0) }
     val buttonLabel = if (currentPage.value < screens.size - 1) "Next" else "Check it out";
 
+    GlideImage(
+        imageModel = screens[currentPage.value].imageBackground,
+        contentScale = ContentScale.Crop,
+    )
+
     Column(
-        verticalArrangement = Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .padding(16.dp)
     ) {
         Column(
             modifier = Modifier
@@ -43,7 +50,8 @@ fun Carousel(screens: List<ScreenData>) {
         }
 
         Box(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier
+                .padding(16.dp)
         ) {
             Button(
                 modifier = Modifier.fillMaxWidth(),
@@ -78,41 +86,38 @@ fun Carousel(screens: List<ScreenData>) {
 
 @Composable
 fun Screen(screenData: ScreenData) {
-    Box {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         GlideImage(
-            imageModel = screenData.imageBackground,
+            imageModel = screenData.imageHeader,
             contentScale = ContentScale.Crop,
+            modifier = Modifier.padding(vertical = 16.dp)
         )
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            GlideImage(
-                imageModel = screenData.imageHeader,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.padding(vertical = 24.dp)
-            )
-            Text(
-                text = screenData.title,
-                style = TextStyle(
-                    fontSize = 28.sp,
-                    fontWeight = FontWeight.W700
-                ),
-                modifier = Modifier.padding(12.dp),
-            )
-            Text(
-                text = screenData.description,
-                style = TextStyle(
-                    fontSize = 20.sp,
-                    textAlign = TextAlign.Center
-                ),
-                modifier = Modifier.padding(12.dp),
-            )
-        }
+        Text(
+            text = screenData.title,
+            style = TextStyle(
+                fontSize = 28.sp,
+                textAlign = TextAlign.Center,
+                color = Color.Black,
+                fontWeight = FontWeight.W700
+            ),
+            modifier = Modifier.padding(12.dp),
+        )
+        Text(
+            text = screenData.description,
+            style = TextStyle(
+                fontSize = 20.sp,
+                textAlign = TextAlign.Center,
+                color = Color.Black
+            ),
+            modifier = Modifier.padding(12.dp),
+        )
     }
 }
 
