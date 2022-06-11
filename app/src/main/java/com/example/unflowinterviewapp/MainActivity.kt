@@ -9,6 +9,8 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.unflowcarousel.Block
+import com.example.unflowcarousel.BlockType
 import com.example.unflowcarousel.Carousel
 import com.example.unflowcarousel.ScreenData
 import com.example.unflowinterviewapp.ui.theme.UnflowInterviewAppTheme
@@ -32,22 +34,60 @@ private fun MyApp() {
             Carousel(
                 listOf(
                     ScreenData(
-                        "https://i.postimg.cc/R0XmLW4r/onboarding-template-img1.png",
-                        "Introducing Audio Rooms",
-                        "We all know video calls can get tiring, so we’ve introduced a new form of room, just for audio.",
-                    "https://i.postimg.cc/7YFZ5JYm/onboarding-template-bg1.png"
+                        imageHeader = "https://i.postimg.cc/R0XmLW4r/onboarding-template-img1.png",
+                        imageBackground = "https://i.postimg.cc/7YFZ5JYm/onboarding-template-bg1.png",
+                        blocks = listOf(
+                            Block(
+                                0,
+                                "Introducing Audio Rooms",
+                                mapOf(),
+                                BlockType.TEXT
+                            ),
+                            Block(
+                                1,
+                                "We all know video calls can get tiring, so we’ve introduced a new form of room, just for audio.",
+                                mapOf(),
+                                BlockType.TEXT
+                            )
+                        )
                     ),
+
                     ScreenData(
-                        "https://i.postimg.cc/2yCXcww2/onboarding-template-img2.png",
-                        "Smart Noise Cancellation",
-                        "Whether it’s the builders or a very vocal puppy — we’ve built in smart noise cancellation to keep your stream zen.",
-                        "https://i.postimg.cc/W14cb20X/onboarding-template-bg2.png"
+                        imageHeader = "https://i.postimg.cc/2yCXcww2/onboarding-template-img2.png",
+                        imageBackground = "https://i.postimg.cc/W14cb20X/onboarding-template-bg2.png",
+                        blocks = listOf(
+                            Block(
+                                0,
+                                "Smart Noise Cancellation",
+                                mapOf(),
+                                BlockType.TEXT
+                            ),
+                            Block(
+                                1,
+                                "Whether it’s the builders or a very vocal puppy — we’ve built in smart noise cancellation to keep your stream zen.",
+                                mapOf(),
+                                BlockType.TEXT
+                            )
+                        )
                     ),
+
                     ScreenData(
-                        "https://i.postimg.cc/YCTDKkR4/onboarding-template-img3.png",
-                        "Boogie Mode",
-                        "Use Audio Rooms for fun activities like socials. Turn on Boogie Mode to listen and react to music together — sounds good, right?",
-                        "https://i.postimg.cc/XYqt6s0P/onboarding-template-bg3.png"
+                        imageHeader = "https://i.postimg.cc/YCTDKkR4/onboarding-template-img3.png",
+                        imageBackground = "https://i.postimg.cc/XYqt6s0P/onboarding-template-bg3.png",
+                        blocks = listOf(
+                            Block(
+                                0,
+                                "Boogie Mode",
+                                mapOf(),
+                                BlockType.TEXT
+                            ),
+                            Block(
+                                1,
+                                "Use Audio Rooms for fun activities like socials. Turn on Boogie Mode to listen and react to music together — sounds good, right?",
+                                mapOf(),
+                                BlockType.TEXT
+                            )
+                        )
                     ),
                 )
             )

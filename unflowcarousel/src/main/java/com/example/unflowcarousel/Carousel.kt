@@ -69,26 +69,27 @@ fun Screen(screenData: ScreenData) {
             contentScale = ContentScale.Crop,
             modifier = Modifier.padding(vertical = 16.dp)
         )
-        Text(
-            text = screenData.title,
-            style = TextStyle(
-                fontSize = 28.sp,
-                textAlign = TextAlign.Center,
-                color = Color.Black,
-                fontWeight = FontWeight.W700
-            ),
-            modifier = Modifier.padding(12.dp),
-        )
-        Text(
-            text = screenData.description,
-            style = TextStyle(
-                fontSize = 20.sp,
-                textAlign = TextAlign.Center,
-                color = Color.Black
-            ),
-            modifier = Modifier.padding(12.dp),
-        )
+        repeat(screenData.blocks.size) {
+            when(screenData.blocks[it].blockType){
+                BlockType.TEXT -> BlockText(screenData.blocks[it])
+                BlockType.IMAGE -> TODO()
+            }
+        }
     }
+}
+
+@Composable
+fun BlockText(block: Block) {
+    Text(
+        text = block.value,
+        style = TextStyle(
+            fontSize = 28.sp,
+            textAlign = TextAlign.Center,
+            color = Color.Black,
+            fontWeight = FontWeight.W700
+        ),
+        modifier = Modifier.padding(12.dp),
+    )
 }
 
 @Composable
