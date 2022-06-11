@@ -2,6 +2,7 @@ package com.example.unflowcarousel
 
 import android.app.Activity
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -53,6 +54,15 @@ fun Carousel(screens: List<ScreenData>) {
                     fontSize = 20.sp,
                 ),
             )
+        }
+    }
+
+    BackHandler {
+        if (currentPage.value > 0) {
+            currentPage.value--
+        }
+        else {
+            activity.finish()
         }
     }
 }
