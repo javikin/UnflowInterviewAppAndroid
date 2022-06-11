@@ -1,12 +1,8 @@
 package com.example.unflowcarousel
 
-import android.app.Activity
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -23,6 +19,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -34,34 +31,46 @@ fun Carousel(screens: List<ScreenData>) {
     val currentPage = remember { mutableStateOf(0) }
     val buttonLabel = if (currentPage.value < screens.size - 1) "Next" else "Check it out";
 
-    Column {
-        Screen(screens[currentPage.value])
-        Button(
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF0E51FF)),
-            shape = RoundedCornerShape(16.dp),
-            onClick = {
-                if (currentPage.value == screens.size - 1) {
-                    activity.finish()
-                } else {
-                    currentPage.value++
-                }
-            }
+    Column(
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .weight(1f)
         ) {
-            Text(
-                text = buttonLabel, color = Color(0xFFFFFFFF), modifier = Modifier.padding(6.dp),
-                style = TextStyle(
-                    fontSize = 20.sp,
-                ),
-            )
+            Screen(screens[currentPage.value])
+        }
+
+        Box(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF0E51FF)),
+                shape = RoundedCornerShape(16.dp),
+                onClick = {
+                    if (currentPage.value == screens.size - 1) {
+                        activity.finish()
+                    } else {
+                        currentPage.value++
+                    }
+                }
+            ) {
+                Text(
+                    text = buttonLabel, color = Color(0xFFFFFFFF), modifier = Modifier.padding(6.dp),
+                    style = TextStyle(
+                        fontSize = 20.sp,
+                    ),
+                )
+            }
         }
     }
 
     BackHandler {
         if (currentPage.value > 0) {
             currentPage.value--
-        }
-        else {
+        } else {
             activity.finish()
         }
     }
@@ -69,33 +78,41 @@ fun Carousel(screens: List<ScreenData>) {
 
 @Composable
 fun Screen(screenData: ScreenData) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    Box {
         GlideImage(
-            imageModel = screenData.imageHeader,
+            imageModel = screenData.imageBackground,
             contentScale = ContentScale.Crop,
         )
-        Text(
-            text = screenData.title,
-            style = TextStyle(
-                fontSize = 26.sp,
-                fontWeight = FontWeight.W700
-            ),
-            modifier = Modifier.padding(12.dp),
-        )
-        Text(
-            text = screenData.description,
-            style = TextStyle(
-                fontSize = 20.sp,
-            ),
-            modifier = Modifier.padding(12.dp),
-        )
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            GlideImage(
+                imageModel = screenData.imageHeader,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.padding(vertical = 24.dp)
+            )
+            Text(
+                text = screenData.title,
+                style = TextStyle(
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.W700
+                ),
+                modifier = Modifier.padding(12.dp),
+            )
+            Text(
+                text = screenData.description,
+                style = TextStyle(
+                    fontSize = 20.sp,
+                    textAlign = TextAlign.Center
+                ),
+                modifier = Modifier.padding(12.dp),
+            )
+        }
     }
 }
 
