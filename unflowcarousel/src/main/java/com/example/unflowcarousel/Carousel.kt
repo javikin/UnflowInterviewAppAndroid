@@ -73,10 +73,19 @@ fun Screen(screenData: ScreenData) {
         repeat(blocks.size) {
             when (blocks[it].blockType) {
                 BlockType.TEXT -> BlockText(blocks[it])
-                BlockType.IMAGE -> TODO()
+                BlockType.IMAGE -> BlockImage(blocks[it])
             }
         }
     }
+}
+
+@Composable
+fun BlockImage(block: Block) {
+    GlideImage(
+        imageModel = block.value,
+        contentScale = ContentScale.Crop,
+        modifier = Modifier.padding(vertical = 16.dp)
+    )
 }
 
 @Composable

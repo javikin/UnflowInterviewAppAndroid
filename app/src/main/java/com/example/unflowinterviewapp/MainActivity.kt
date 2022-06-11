@@ -41,6 +41,12 @@ private fun MyApp() {
                                 BlockType.TEXT
                             ),
                             Block(
+                                2,
+                                "https://i.postimg.cc/R0XmLW4r/onboarding-template-img1.png",
+                                mapOf(),
+                                BlockType.IMAGE
+                            ),
+                            Block(
                                 1,
                                 "We all know video calls can get tiring, so we’ve introduced a new form of room, just for audio.",
                                 mapOf(),
