@@ -6,11 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.unflowcarousel.Carousel
+import com.example.unflowcarousel.ScreenData
 import com.example.unflowinterviewapp.ui.theme.UnflowInterviewAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -29,7 +29,15 @@ private fun MyApp() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background
         ) {
-            Carousel(listOf())
+            Carousel(
+                listOf(
+                    ScreenData(
+                        "https://blog.carlow.edu/wp-content/themes/carlow/library/images/person-product-design.png",
+                        "Title 1",
+                        "Description"
+                    ),
+                )
+            )
         }
     }
 }
