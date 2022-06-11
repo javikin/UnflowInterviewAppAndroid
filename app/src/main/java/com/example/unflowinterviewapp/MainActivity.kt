@@ -36,6 +36,11 @@ private fun MyApp() {
                         "Title 1",
                         "Description"
                     ),
+                    ScreenData(
+                        "https://blog.carlow.edu/wp-content/themes/carlow/library/images/person-product-design.png",
+                        "Title 2",
+                        "Description 2"
+                    ),
                 )
             )
         }
